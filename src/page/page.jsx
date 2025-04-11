@@ -112,30 +112,32 @@ const page = () => {
 
   const [loading, setLoading] = useState(false)
   const SendMessage = (event) => {
-    setLoading(true)
+    setLoading(true);
     event.preventDefault();
     const token = "8130735213:AAHtQtiykIJm_Yjt43o22xlB99uDSOsOmH4";
-    const chat_id = ""
+    const chat_id = 6365725666;
     const url = `https://api.telegram.org/bot${token}/sendMessage`;
     const name = document.getElementById("name").value;
-    const surname = document.getElementById("name").value;
-    const MessageContent = `Isim ${name} /n Failiyasi ${surname}`
+    const surname = document.getElementById("surname").value; // Corrected surname input
+    const phone = document.getElementById("phone").value; // Added phone number for sending
+    const MessageContent = `Isim: ${name} \nFamiliya: ${surname} \nTelefon raqam: ${phone}`;
+
     axios({
       url: url,
       method: 'POST',
-      dat: {
+      data: {  // Fixed typo from 'dat' to 'data'
         "chat_id": chat_id,
-        "text": name
+        "text": MessageContent  // Send the constructed message content
       }
     }).then((res) => {
-      document.getElementById("MyForm").reset()
-      alert("Mission Complate")
+      document.getElementById("MyForm").reset();
+      alert("Mission Complete"); // Corrected spelling
     }).catch((error) => {
       console.log("Yuborishda xatolik", error);
     }).finally(() => {
-      setLoading(false)
-    })
-  }
+      setLoading(false);
+    });
+};
 
 
 
@@ -161,11 +163,12 @@ const page = () => {
             <p className="text-2xl">{t('text4')}</p>
           </div>
         </div>
-        <button className="w-full md:w-[334px] h-[78px] text-white rounded-4xl bg-cyan-700 text-2xl text-center transition-all duration-300 transform hover:bg-cyan-600 hover:scale-105 hover:shadow-lg">
          <a href="#sendMessage">
-         {t('text5')}
+         <button className="w-full md:w-[334px] h-[78px] p-[10px] text-white rounded-3xl bg-gradient-to-r from-cyan-700 via-cyan-800 to-cyan-900 text-2xl text-center transition-all duration-300 transform hover:bg-gradient-to-l from-cyan-600 via-cyan-700 to-cyan-800 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-cyan-400">
+  {t('text5')}
+</button>
+
           </a>
-        </button>
 
 
         <p className="text-lg font-medium text-gray-800 bg-gradient-to-r p-4 rounded-2xl">
@@ -189,38 +192,6 @@ const page = () => {
     </div>
   </div>
 
-  {/* Pagination */}
-  <div className="swiper-pagination"></div>
-
-  {/* Next Button */}
-  <div className="swiper-button-next flex items-center absolute top-1/2 right-4 transform -translate-y-1/2 p-3 bg-cyan-700 hover:bg-cyan-600 rounded-full shadow-lg transition-all duration-300">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-      className="w-5 h-5 text-white"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-    </svg>
-    <span className="ml-2 text-white text-lg">Next</span>
-  </div>
-
-  {/* Previous Button */}
-  <div className="swiper-button-prev flex flex-row-reverse items-center absolute top-1/2 left-4 transform -translate-y-1/2 p-3 bg-cyan-700 hover:bg-cyan-600 rounded-full shadow-lg transition-all duration-300">
-    <span className="mr-2 text-white text-lg">Back</span>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      strokeWidth={2}
-      stroke="currentColor"
-      className="w-5 h-5 text-white"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-    </svg>
-  </div>
 </div>
 
         <div>
@@ -257,36 +228,64 @@ const page = () => {
 
       <br />
       <Marquee className='' pauseOnHover={true} speed={40}>
-        <div className='flex gap-[40px]'>
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-        </div>
-      </Marquee>
+  <div className='flex gap-[40px]'>
+    {/* First set of images */}
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    
+    {/* Second set of images (repeated) */}
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+  </div>
+</Marquee>
+
       <br />
       <h1 className='text-4xl text-center p-[15px]'>{t('text9')}</h1>
       <br />
       <Marquee className='' direction='right' pauseOnHover={true} speed={40}>
-        <div className='flex gap-[40px]'>
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-          <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
-        </div>
-      </Marquee>
+  <div className='flex gap-[40px]'>
+    {/* First set of images */}
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    
+    {/* Second set of images (repeated) */}
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+    <img src={resalt2} alt="certificate" style={{ maxWidth: "200px", marginRight: "16px", borderRadius: "12px" }} />
+  </div>
+</Marquee>
+
       <br />
       <br />
       <div className="max-w-[1440px] w-full mx-auto px-4">
@@ -334,164 +333,257 @@ const page = () => {
 
       <br />
       <Marquee className='' pauseOnHover={true} speed={40}>
-        <div className="flex items-center justify-around gap-[50px] p-[20px]">
-          <div className="max-w-xs bg-gradient-to-r  rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">{t('text14')}</h1>
-            <p className=" opacity-90">
-              {t('text15')}
-            </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r  rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">{t('text14')}</h1>
-            <p className=" opacity-90">
-              {t('text15')}
-            </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r  rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">{t('text14')}</h1>
-            <p className=" opacity-90">
-              {t('text15')}            </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r  rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">{t('text14')}</h1>
-            <p className=" opacity-90">
-              {t('text15')}            </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r  rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">{t('text14')}</h1>
-            <p className=" opacity-90">
-              {t('text15')}            </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r  rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">{t('text14')}</h1>
-            <p className=" opacity-90">
-              {t('text15')}            </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r  rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">{t('text14')}</h1>
-            <p className=" opacity-90">
-              {t('text15')}            </p>
-          </div>
+  <div className="flex items-center justify-start gap-[50px] p-[20px]">
+    {/* First Set of Items */}
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+        alt="New York City"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">New York City</h1>
+      <p className="opacity-90">The city that never sleeps, filled with endless opportunities and excitement.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://img.static-af.com/transform/45cb9a13-b167-4842-8ea8-05d0cc7a4d04/"
+        alt="Paris"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Paris</h1>
+      <p className="opacity-90">A city of love, fashion, and rich cultural history.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/5b228bd689c172172ab88d9c/1501f7d6-87ac-445c-a87b-e9ff9551ccaa/_DSF5280-Enhanced-NR.jpg"
+        alt="Tokyo"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Tokyo</h1>
+      <p className="opacity-90">The bustling capital of Japan, where tradition meets technology.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://static.independent.co.uk/2024/03/20/17/newFile.jpg?width=1200&auto=webp&quality=75"
+        alt="Sydney"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Sydney</h1>
+      <p className="opacity-90">A vibrant city known for its iconic Opera House and beautiful beaches.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/London_Skyline_%28125508655%29.jpeg/960px-London_Skyline_%28125508655%29.jpeg"
+        alt="London"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">London</h1>
+      <p className="opacity-90">A historic city with a mix of modernity and tradition.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://i.natgeofe.com/k/a6c9f195-de20-445d-9d36-745ef56042c5/OG_Colosseum_Ancient-Rome_KIDS_1122_3x2.jpg"
+        alt="Rome"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Rome</h1>
+      <p className="opacity-90">An ancient city full of history, culture, and stunning architecture.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://bronix.uz/uploads/blog/27/64427ebc51920.jpeg"
+        alt="Dubai"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Dubai</h1>
+      <p className="opacity-90">A luxurious city with towering skyscrapers and the ultimate shopping experience.</p>
+    </div>
+    
+    {/* Second Set of Items (Duplicate) */}
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://cdn.britannica.com/61/93061-050-99147DCE/Statue-of-Liberty-Island-New-York-Bay.jpg"
+        alt="New York City"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">New York City</h1>
+      <p className="opacity-90">The city that never sleeps, filled with endless opportunities and excitement.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://img.static-af.com/transform/45cb9a13-b167-4842-8ea8-05d0cc7a4d04/"
+        alt="Paris"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Paris</h1>
+      <p className="opacity-90">A city of love, fashion, and rich cultural history.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://images.squarespace-cdn.com/content/v1/5b228bd689c172172ab88d9c/1501f7d6-87ac-445c-a87b-e9ff9551ccaa/_DSF5280-Enhanced-NR.jpg"
+        alt="Tokyo"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Tokyo</h1>
+      <p className="opacity-90">The bustling capital of Japan, where tradition meets technology.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://static.independent.co.uk/2024/03/20/17/newFile.jpg?width=1200&auto=webp&quality=75"
+        alt="Sydney"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Sydney</h1>
+      <p className="opacity-90">A vibrant city known for its iconic Opera House and beautiful beaches.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/London_Skyline_%28125508655%29.jpeg/960px-London_Skyline_%28125508655%29.jpeg"
+        alt="London"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">London</h1>
+      <p className="opacity-90">A historic city with a mix of modernity and tradition.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://i.natgeofe.com/k/a6c9f195-de20-445d-9d36-745ef56042c5/OG_Colosseum_Ancient-Rome_KIDS_1122_3x2.jpg"
+        alt="Rome"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Rome</h1>
+      <p className="opacity-90">An ancient city full of history, culture, and stunning architecture.</p>
+    </div>
+    <div className="max-w-xs bg-gradient-to-r rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://bronix.uz/uploads/blog/27/64427ebc51920.jpeg"
+        alt="Dubai"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Dubai</h1>
+      <p className="opacity-90">A luxurious city with towering skyscrapers and the ultimate shopping experience.</p>
+    </div>
+  </div>
+</Marquee>
 
-        </div>
-      </Marquee>
+
+
       <br />
       <Marquee className='' direction='right' pauseOnHover={true} speed={40}>
-        <div className='flex items-center justify-around gap-[40px] p-[20px]'>
+  <div className='flex items-center justify-start gap-[50px] p-[20px]'>
+    {/* First Set of Items */}
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Okuma_lecture_hall_Waseda_University_2007-01.jpg/1200px-Okuma_lecture_hall_Waseda_University_2007-01.jpg"
+        alt="Waseda University"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Waseda University</h1>
+      <p className="opacity-80">A prestigious private university located in Tokyo, Japan.</p>
+    </div>
+    
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://cdn.britannica.com/69/141169-050-CD5892EB/Baker-Library-Harvard-Business-School-Boston-University.jpg"
+        alt="Harvard University"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Harvard University</h1>
+      <p className="opacity-80">One of the most prestigious universities in the world, located in Cambridge, USA.</p>
+    </div>
+    
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://cdn.britannica.com/03/117103-050-F4C2FC83/view-University-of-Oxford-England-Oxfordshire.jpg"
+        alt="Oxford University"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Oxford University</h1>
+      <p className="opacity-80">The oldest university in the English-speaking world, located in Oxford, UK.</p>
+    </div>
+    
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://assets.simpleviewinc.com/simpleview/image/upload/crm/sanmateoca/shutterstock_4189008910-9b68011a5056a36_9b6802fa-5056-a36a-0bbb53c8e971b411.jpg"
+        alt="Stanford University"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Stanford University</h1>
+      <p className="opacity-80">A world-renowned private research university in Stanford, California, USA.</p>
+    </div>
+    
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://cdn.britannica.com/52/124752-050-C6AA6622/Yasuda-Auditorium-University-of-Tokyo.jpg"
+        alt="University of Tokyo"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">University of Tokyo</h1>
+      <p className="opacity-80">The leading university in Japan, offering a wide range of academic programs.</p>
+    </div>
+    
+    {/* Second Set of Items (Duplicate) */}
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Okuma_lecture_hall_Waseda_University_2007-01.jpg/1200px-Okuma_lecture_hall_Waseda_University_2007-01.jpg"
+        alt="Waseda University"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Waseda University</h1>
+      <p className="opacity-80">A prestigious private university located in Tokyo, Japan.</p>
+    </div>
+    
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://cdn.britannica.com/69/141169-050-CD5892EB/Baker-Library-Harvard-Business-School-Boston-University.jpg"
+        alt="Harvard University"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Harvard University</h1>
+      <p className="opacity-80">One of the most prestigious universities in the world, located in Cambridge, USA.</p>
+    </div>
+    
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://cdn.britannica.com/03/117103-050-F4C2FC83/view-University-of-Oxford-England-Oxfordshire.jpg"
+        alt="Oxford University"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Oxford University</h1>
+      <p className="opacity-80">The oldest university in the English-speaking world, located in Oxford, UK.</p>
+    </div>
+    
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://assets.simpleviewinc.com/simpleview/image/upload/crm/sanmateoca/shutterstock_4189008910-9b68011a5056a36_9b6802fa-5056-a36a-0bbb53c8e971b411.jpg"
+        alt="Stanford University"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">Stanford University</h1>
+      <p className="opacity-80">A world-renowned private research university in Stanford, California, USA.</p>
+    </div>
+    
+    <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
+      <img
+        src="https://cdn.britannica.com/52/124752-050-C6AA6622/Yasuda-Auditorium-University-of-Tokyo.jpg"
+        alt="University of Tokyo"
+        className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
+      />
+      <h1 className="text-2xl font-bold mb-2">University of Tokyo</h1>
+      <p className="opacity-80">The leading university in Japan, offering a wide range of academic programs.</p>
+    </div>
+  </div>
+</Marquee>
 
-          <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city2}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">TCC</h1>
-            <p className=" opacity-80">
-              {t('text17')}            </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city2}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">TCC</h1>
-            <p className=" opacity-80">
-              {t('text17')}            </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city2}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">TCC</h1>
-            <p className=" opacity-80">
-              {t('text17')}               </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city2}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">TCC</h1>
-            <p className=" opacity-80">
-              {t('text17')}               </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city2}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">TCC</h1>
-            <p className=" opacity-80">
-              {t('text17')}               </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city2}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">TCC</h1>
-            <p className=" opacity-80">
-              {t('text17')}               </p>
-          </div>
-          <div className="max-w-xs bg-gradient-to-r text-gray rounded-lg shadow-xl p-5 text-center hover:scale-105 transition-all duration-300">
-            <img
-              src={city2}
-              alt="Waseda University"
-              className="w-full h-auto rounded-lg mb-4 transform transition duration-300 hover:scale-105"
-            />
-            <h1 className="text-2xl font-bold  mb-2">TCC</h1>
-            <p className=" opacity-80">
-              {t('text17')}               </p>
-          </div>
-        </div>
-      </Marquee>
+
       <br />
       <div className=' flex items-center justify-center'>
-        <button className='w-full sm:w-[334px] h-[78px] text-white rounded-4xl bg-cyan-700 text-2xl text-center transition-all duration-300 transform hover:bg-cyan-600 hover:scale-105 hover:shadow-lg'>
+          <a href="#sendMessage">
+          <button className="w-full sm:w-[334px] h-[78px] text-white rounded-4xl bg-cyan-700 text-2xl text-center transition-all duration-300 transform hover:bg-cyan-600 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-cyan-300">
+  Contact Us
+</button>
 
-          <a href="#sendMessage">Contact Us</a>
-        </button>
+           </a>
 
       </div>
       <br />
@@ -634,32 +726,37 @@ const page = () => {
 
           {/* Form Block */}
           <div className="w-full max-w-[500px] lg:w-[40%]">
-            <form id="MyForm" onSubmit={SendMessage}>
-              <label className="block font-medium mb-2 text-2xl text-white">
-                {t('text34')}
-              </label>
-              <div className="space-y-5">
-                <input
-                  type="text"
-                  id="name"
-                  placeholder="Your name"
-                  className="w-full h-[55px] px-4 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-                />
-                <input
-                  type="number"
-                  id="phone"
-                  placeholder="Your phone number"
-                  className="w-full h-[55px] px-4 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
-                />
-                <button
-                  type="submit"
-                  className="w-full h-[60px] border text-white rounded-3xl bg-cyan-800 text-2xl transition-all duration-300 transform hover:bg-cyan-700 hover:scale-105 hover:shadow-lg"
-                >
-                  {loading ? "Yuborlimoqda...." : "Yuborildi"}
-                </button>
-
-              </div>
-            </form>
+          <form id="MyForm" onSubmit={SendMessage}>
+    <label className="block font-medium mb-2 text-2xl text-white">
+      {t('text34')}
+    </label>
+    <div className="space-y-5">
+      <input
+        type="text"
+        id="name"
+        placeholder="Your name"
+        className="w-full h-[55px] px-4 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+      />
+      <input
+        type="text"  // Changed to 'text' for surname input
+        id="surname"
+        placeholder="Your surname"
+        className="w-full h-[55px] px-4 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+      />
+      <input
+        type="number"
+        id="phone"
+        placeholder="Your phone number"
+        className="w-full h-[55px] px-4 border border-gray-300 rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder-gray-400"
+      />
+      <button
+        type="submit"
+        className="w-full h-[60px] border text-white rounded-3xl bg-cyan-800 text-2xl transition-all duration-300 transform hover:bg-cyan-700 hover:scale-105 hover:shadow-lg"
+      >
+        {loading ? "Yuborlimoqda...." : "Yuborildi"}
+      </button>
+    </div>
+  </form>
           </div>
         </div>
 

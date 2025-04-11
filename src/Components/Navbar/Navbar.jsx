@@ -68,11 +68,10 @@ const Navbar = () => {
                         />
                     </div>
 
-                    <div className="space-y-2 text-lg font-medium text-gray-700">
+                    <div className="space-y-2 text-lg font-medium text-gray-700 hidden md:block">
                         <p><span className="text-cyan-400">📞</span> +998 (94) 772 2032</p>
                         <p><span className="text-cyan-400">📞</span> +998 (90) 444 7000</p>
                     </div>
-
 
                     {/* Burger Icon for Mobile */}
                     <div className="md:hidden">
@@ -85,10 +84,10 @@ const Navbar = () => {
             {isMenuOpen && (
                 <div className="md:hidden bg-gray-100 p-4 flex flex-col items-center">
                     <ul className="flex flex-col gap-4">
-                        <li><a href="#">{t('navbar1')}</a></li>
-                        <li><a href="#">{t('navbar2')}</a></li>
-                        <li><a href="#">{t('navbar3')}</a></li>
-                        <li><a href="#">{t('navbar4')}</a></li>
+                        <li><a href="#whyus">{t('navbar1')}</a></li>
+                        <li><a href="#result">{t('navbar2')}</a></li>
+                        <li><a href="#course">{t('navbar3')}</a></li>
+                        <li><a href="#faq">{t('navbar4')}</a></li>
                     </ul>
 
                     <div className="flex gap-4 mt-4">
@@ -118,7 +117,7 @@ const Navbar = () => {
                         />
                     </div>
 
-                    <div className="mt-4">
+                    <div className="mt-4 text-center">
                         <p>+998 (94) 772 2032</p>
                         <p>+998 (90) 444 7000</p>
                     </div>
