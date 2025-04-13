@@ -211,7 +211,7 @@ const page = () => {
           <br />
           <h1 className="text-4xl text-center p-4">{t('text7')}</h1>
 
-          <div className="flex  flex-wrap justify-center gap-[100px] p-4">
+          <div className="flex  flex-wrap justify-center gap-[40px] p-4">
             {[study1, study2, study3, study4, study5, study6].map((img, idx) => (
               <div
                 key={idx}
@@ -592,9 +592,10 @@ const page = () => {
       <br />
       <div className=' flex items-center justify-center'>
         <a href="#sendMessage">
-          <button className="w-full sm:w-[334px] h-[78px] text-white rounded-4xl bg-cyan-700 text-2xl text-center transition-all duration-300 transform hover:bg-cyan-600 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-cyan-300">
-            Contact Us
-          </button>
+        <button className="w-full sm:w-[334px] h-[78px] text-white rounded-4xl bg-cyan-700 text-2xl text-center transition-all duration-300 transform hover:bg-cyan-600 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-cyan-300 px-4 sm:px-0">
+  Contact Us
+</button>
+
 
         </a>
 
