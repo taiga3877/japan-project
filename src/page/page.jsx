@@ -118,17 +118,23 @@ const page = () => {
     setLoading(true);
     setErrorMessage('');
     setSuccessMessage('');
-
+  
     const name = document.getElementById("name").value.trim();
     const surname = document.getElementById("surname").value.trim();
     const phone = document.getElementById("phone").value.trim();
-
-
+  
+    // Check if any of the fields are empty
+    if (!name || !surname || !phone) {
+      setErrorMessage("❌ Mission Failed: All fields must be filled!");
+      setLoading(false);
+      return;
+    }
+  
     const token = "8008921149:AAFYLw0qJ0G6vUxg1K-VJdRft-H6H6m1rnI";
     const chat_id = 6365725666;
     const url = `https://api.telegram.org/bot${token}/sendMessage`;
     const MessageContent = `Isim: ${name} \nFamiliya: ${surname} \nTelefon raqam: ${phone}`;
-
+  
     axios.post(url, {
       chat_id,
       text: MessageContent
@@ -142,7 +148,7 @@ const page = () => {
       setLoading(false);
     });
   };
-
+  
 
 
 
